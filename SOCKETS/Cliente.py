@@ -1,6 +1,6 @@
 from socket import *
 
-cliente = socket(AF_INET,SOCK_STREAM) #$$$$$$$$$$$$ Familia de endereços Ipv4 (AF_INET, SOCK_STREAM) TCP,ou UDP (socket(AF_INET, SOCK_DGRAM)
+cliente = socket(AF_INET,SOCK_STREAM) #$$$$$@@@@@Familia de endereços Ipv4 (AF_INET, SOCK_STREAM) TCP,ou UDP (socket(AF_INET, SOCK_DGRAM)
 cliente.connect(("192.168.0.2",4444)) # Clientes querendo se conectar
 
 
