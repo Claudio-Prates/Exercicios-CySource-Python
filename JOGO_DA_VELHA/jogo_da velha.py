@@ -63,7 +63,7 @@ def ChecaVitoria(jogador):  # Função que verifica qual jogador venceu o jogo
             print("O jogo acabou em um empate\n")
             return True
 
-
+# verifica se o jogo acabou
 while not acabou:
     ImprimirTabuleiro()
     acabou = ChecaVitoria("O")
@@ -71,7 +71,9 @@ while not acabou:
         break
     print("Jogador X, escolha um espaço.")
     Turno("X")
-
+    
+    
+# Função que imprime o tabuleiro na tela
     ImprimirTabuleiro()
     acabou = ChecaVitoria("X")
     if acabou == True:
@@ -79,4 +81,4 @@ while not acabou:
     print("Jogador O, escolha um espaço.")
     Turno("O")
 
-jogo_da_velha()
+jogo_da_velha() # chamada da função
