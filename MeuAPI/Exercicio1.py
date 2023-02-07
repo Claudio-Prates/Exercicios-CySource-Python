@@ -14,6 +14,7 @@ app.secret_key = 'ajsd8h218hd8hcs8hj9219ejd9ch8mc91u239m921cvu39du2191jd'
 def comecar_jogo():
     # Gera um número aleatório entre 1 e 100 e salva na sessão
     session["numero"] = random.randint(1, 100)
+    session["tentativas"] = 0
 
     # Retorna um objeto JSON indicando que o jogo foi iniciado com sucesso
     return jsonify({"success": True})
@@ -21,14 +22,17 @@ def comecar_jogo():
 # Rota "/adivinhar_numero" para fazer uma tentativa de adivinhação
 @app.route('/adivinhar_numero', methods=['POST'])
 def adivinhar_numero():
-    # Variável "status" é definida como "maior"
-    status = "maior"
+    palpite = int(request.json["palpite"])
+    session["tentativas"] += 1
+    if palpite > session["numero"]:
+        status = "maior"
 
-    # Imprime os dados da solicitação JSON
-    print(request.json)
+    elif palpite < session["numero"]:
+        status = "menor"
+    else:
+        status = "vc acertou"
 
-    # Retorna um objeto JSON com o status da tentativa de adivinhação
-    return jsonify({"status": status})
+    return jsonify({"status":status , "tentativas":session["tentativas"]})
 
 # Habilita a opção de depuração
 debug = True
