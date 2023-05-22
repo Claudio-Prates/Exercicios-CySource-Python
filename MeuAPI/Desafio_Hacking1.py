@@ -1,5 +1,5 @@
 # Importando bibliotecas necessárias
-import requests
+import requests , urllib3
 import numexpr
 
 # Desativando a exibição de mensagens de aviso relacionadas à conexão SSL
