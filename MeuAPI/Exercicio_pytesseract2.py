@@ -25,18 +25,16 @@ def puxar_captcha(session):
     # Salva a imagem em um arquivo local chamado "a.png"
     with open("a.png", "wb") as f:
         f.write(r.content)
-
     # Utiliza o Tesseract OCR para extrair o texto do captcha
     captcha_image = Image.open("a.png")
     return pytesseract.image_to_string(captcha_image).replace("\n", "")[:-1]
 
 
 def enviar_captcha(session, captcha, level):
-    headers = {"content-type": "application/x-www-form-urlencoded"}
+    headers = {"content-type":"application/x-www-form-urlencoded"}
     data = {"captcha": captcha, "chal": "stage2", "level": level}
-
     # Envia uma requisição POST para submeter o captcha
-    r = session.post(url + "api.php", data=data, headers=headers)
+    r = session.post(url + "api.php", data="captcha={0}&chal=stage2&level=0".format(captcha), headers=headers)
 
     # Verifica se a resposta indica sucesso
     if "You did it" in r.text:
@@ -53,11 +51,9 @@ contador = 0
 
 while True:
     contador += 1
-
-    # Obtém o captcha
+# Obtém o captcha
     captcha = puxar_captcha(session)
-
-    # Envia o captcha e verifica se foi aceito
+ # Envia o captcha e verifica se foi aceito
     if enviar_captcha(session, captcha, level="1"):
         break
 
