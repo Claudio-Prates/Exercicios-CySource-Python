@@ -23,10 +23,10 @@ def puxar_captcha(session):
     r = session.get(url + path_imagem)
 
     # Salva a imagem em um arquivo local chamado "a.png"
-    with open("a.png", "wb") as f:
+    with open("../a.png", "wb") as f:
         f.write(r.content)
     # Utiliza o Tesseract OCR para extrair o texto do captcha
-    captcha_image = Image.open("a.png")
+    captcha_image = Image.open("../a.png")
     return pytesseract.image_to_string(captcha_image).replace("\n", "")[:-1]
 
 
